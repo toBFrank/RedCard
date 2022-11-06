@@ -35,7 +35,7 @@ def flashlist(id=None):
 	tempArray = []
 	#x={[]}
 	DBarray = res.fetchall()
-	for i in range(0, len(k)):
+	for i in range(0, len(DBarray)):
 		tempArray.append({"questionID":i+1,"question":DBarray[i][1],"answer":DBarray[i][2]})
 	return json.dumps(tempArray)
 
