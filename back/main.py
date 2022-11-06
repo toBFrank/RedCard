@@ -108,6 +108,16 @@ def classDisp():
 def flashpost():
     print(request.get_data())
     return 'cool'
+<<<<<<< HEAD
+=======
+@app.route('/doot', methods=['POST'])
+def doot():
+	print(request.get_data())
+	y = json.loads(request.get_data())
+	uID = y['UserID']
+	qID = y['qID']
+	return 'success'
+>>>>>>> cfded08bbd51abb28fd703ac4c920f7bb3937d56
 
 def isUser(passGiven:str, userGiven:str) -> bool:
 	cur.execute("SELECT passHash, salt FROM user WHERE name = '" + userGiven + "'")
