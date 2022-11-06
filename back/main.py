@@ -1,8 +1,10 @@
 import json
 import sqlite3
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, make_response
 import datetime
 import os
+import bcrypt
+import uuid
 
 con = sqlite3.connect("main.db", check_same_thread=False)
 
@@ -15,7 +17,9 @@ app = Flask(__name__, template_folder=template_dir)
 
 @app.route('/')
 def main():
-	return render_template('index.html', in_val=datetime.datetime.utcnow())
+	res = cur.execute("select * from user")
+	hold = res.fetchall()
+	return render_template('index.html', in_val=hold)
 	
 
 @app.route('/classlist')
@@ -41,15 +45,40 @@ def flashlist(id=None):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-	err= None
+	err = None
+	res = cur.execute("select * from user")
+
 	if request.method == 'POST':
-		if request.form['username'] != 'josh' or request.form['password'] != 'pass':
-			err = "Invalid"
+		userNameGivenBy = request.form['username']
+		passGivenBy = request.form['password']
+		nameOfUser = isUser(passGivenBy, userNameGivenBy)
+		if nameOfUser != False:
+			resp = make_response(render_template('index.html'))
+			cookieID = uuid.uuid4()
+			resp.set_cookie('UserID', str(cookieID).encode('utf-8'))
+			cur.execute("UPDATE user SET cookie = '" + str(cookieID) + "' WHERE name ='" + userNameGivenBy + "'")
+			return resp
 		else:
 			return redirect('/')
 	return render_template('login.html', error=err)
-	
 
+
+def isUser(passGiven:str, userGiven:str) -> bool:
+	cur.execute("SELECT passHash, salt FROM user WHERE name = '" + userGiven + "'")
+	arrayToWork = cur.fetchone()
+	if len(arrayToWork) == 0:
+		return False
+	passHashed, salted = arrayToWork
+	hashedCheck = bcrypt.hashpw(passGiven.encode('utf-8'), salted.encode('utf-8'))
+	if passHashed == str(hashedCheck)[2:len(hashedCheck)+2] :
+		return True
+	return False
 
 app.run(host='0.0.0.0', port=8000)
 
+#lol=bcrypt.gensalt() 
+#res=cur.execute("UPDATE user SET salt ='"+str(lol)[2:len(lol)+2]+"' where name= 'josh'") 
+#bcrypt.hashpw("ass32",hashToDo[0][0].encode('utf-8'))
+#HashedPassword = bcrypt.hashpw("ass32".encode('utf-8'),hashToDo[0][0].encode('utf-8')) 
+#res = cur.execute("UPDATE user SET salt = '" + str(lol)[2:len(lol)+2] + "' WHERE name = 'josh'")
+#str(HashedPassword)[2:len(HashedPassword)+2]    
