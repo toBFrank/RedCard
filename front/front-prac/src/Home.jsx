@@ -5,7 +5,7 @@ const Home = () => {
        
   return (
     <>
-    <h1>Velkommen</h1>
+    <h1>Welcome to RedCard!</h1>
     </>
   );
 };
