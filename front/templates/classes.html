@@ -2,8 +2,8 @@
 <html>
 <body>
 	<h1>Classes</h1>
-    {% for i in class_list %}
-    <button type = "button">  </button>
+    {% for i in range(0, class_list|length) -%}
+    <a href="/flashes/{{ i+1 }}">{{ class_list[i][0] }} </a>
     <br>
     {% endfor %}
     {% if error %}
