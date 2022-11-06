@@ -19,7 +19,7 @@
 
 
 <body>
-    
+
     <h1>RedCard</h1>
 
     <h2>Q&As</h2>
@@ -27,17 +27,16 @@
     <div class="Flashcard">
         <div id="Qtit" class="qatitle">Question?</div>
         <input type="text" placeholder="Why?" class="inputField" id="Qin">
-        <br>
-        <button class="done" id="doneq" onclick="get_q()">Add Q</button>
-
+        <!-- <br> -->
+        <!-- <button class="done" id="doneq" onclick="get_q()">Add Q</button> -->
         <div id="Atit" class="qatitle">Answer.</div>
         <input type="text" placeholder="Because." class="inputField" id="Ain">
         <br>
-        <button class="done" id="donea" onclick="get_a()">Add A</button>
+        <button class="done" id="donea" onclick="get_qa()">Add Card</button>
     </div>
 
     <!-- <button class="AddCard">+</button> -->
-    <button class="DelCard" onclick="del_a_card()">Remove</button>
+    <button class="DelCard" onclick="del_a_card()">Remove Card</button>
     <button onclick="send_cards()">Finished!</button>
 
 </body>
