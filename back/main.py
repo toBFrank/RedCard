@@ -5,6 +5,8 @@ import datetime
 import os
 import bcrypt
 import uuid
+from flask_cors import CORS
+
 
 con = sqlite3.connect("main.db", check_same_thread=False)
 
@@ -14,6 +16,7 @@ cur = con.cursor()
 #con.close()
 template_dir = os.path.abspath('../front/templates')
 app = Flask(__name__, template_folder=template_dir)
+CORS(app)
 
 @app.route('/')
 def main():
@@ -61,6 +64,12 @@ def login():
 		else:
 			return redirect('/')
 	return render_template('login.html', error=err)
+
+	
+@app.route('/flashpost', methods=['POST'])
+def flashpost():
+    print(request.get_data())
+    return 'cool'
 
 
 def isUser(passGiven:str, userGiven:str) -> bool:

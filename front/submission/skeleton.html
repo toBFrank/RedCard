@@ -11,15 +11,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans">
-    <link rel="stylesheet" href="fleshgoodcopy.css">
-    <script defer src="braingoodcopy.js"></script>
+    <link rel="stylesheet" href="flesh.css">
+    <script defer src="brain.js"></script>
     <title>RedCard</title>
 </head>
 
 
 
 <body>
-    
+
     <h1>RedCard</h1>
 
     <h2>Q&As</h2>
@@ -27,17 +27,16 @@
     <div class="Flashcard">
         <div id="Qtit" class="qatitle">Question?</div>
         <input type="text" placeholder="Why?" class="inputField" id="Qin">
-        <br>
-        <button class="done" id="doneq" onclick="get_q()">Add Q</button>
-
+        <!-- <br> -->
+        <!-- <button class="done" id="doneq" onclick="get_q()">Add Q</button> -->
         <div id="Atit" class="qatitle">Answer.</div>
         <input type="text" placeholder="Because." class="inputField" id="Ain">
         <br>
-        <button class="done" id="donea" onclick="get_a()">Add A</button>
+        <button class="done" id="donea" onclick="get_qa()">Add Card</button>
     </div>
 
     <!-- <button class="AddCard">+</button> -->
-    <button class="DelCard" onclick="del_a_card()">Remove</button>
+    <button class="DelCard" onclick="del_a_card()">Remove Card</button>
     <button onclick="send_cards()">Finished!</button>
 
 </body>
