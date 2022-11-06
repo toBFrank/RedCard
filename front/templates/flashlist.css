@@ -1,0 +1,37 @@
+body {
+    background-color: #312121;
+    height: 80vh;
+    width: 80vw;
+    margin: 10%;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 1px;
+    font-size: 3rem;
+    color: #d35b5b;
+    user-select: none;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 9rem;
+    margin-bottom: 0.1rem;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+#flashcard {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #e6afa5;
+    border: 1px solid #d35b5b;
+    background-color: #d35b5b;
+    border-radius: 20px;
+    font-size: 2rem;
+    padding: 12px;
+    margin-left: 3rem;
+    margin-bottom: 2rem;
+}
+
+#flashcard:hover {
+    color: #d35b5b;
+    border: 1px solid #e6afa5;
+    background-color: #e6afa5;
+}
