@@ -29,8 +29,15 @@ With quizlet moving to a more pay-to-use system, it's become harder for students
 ---
 #### Requirements
 ---
-
+Docker,
+Flask,
+JS
+Python
+CSS
+HTML
+Solid.Js
 
 ---
 #### How To Use
 ---
+RedCard is a web app that enables users to create, view, and share flashcards. When users create flashcards, they earn points that can be used to view compiled quizzes of the top user made. Users can updoot flashcards they like, and flashcards with more updoots get recommended.
