@@ -15,11 +15,12 @@ function MyComponent(props) {
 		  console.log(params.id)
   });
   
+
 		return <>
   <h1>Flashcards</h1>
 				<For each={cards()}>{(card, i) =>
 				<ul>
-						<QaSwitcher in={card} />
+						<QaSwitcher in={card} ctr={i} />
 				</ul>
 						}
 				</For>

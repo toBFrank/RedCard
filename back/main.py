@@ -101,7 +101,13 @@ def logOut():
 def flashpost():
     print(request.get_data())
     return 'cool'
-
+@app.route('/doot', methods=['POST'])
+def doot():
+	print(request.get_data())
+	y = json.loads(request.get_data())
+	uID = y['UserID']
+	qID = y['qID']
+	return 'success'
 
 def isUser(passGiven:str, userGiven:str) -> bool:
 	cur.execute("SELECT passHash, salt FROM user WHERE name = '" + userGiven + "'")
