@@ -36,7 +36,6 @@ def userList():
 	return res.fetchall()
 
 @app.route('/flashlist/<id>')
-
 def flashlist(id=None):
 	res = cur.execute("select * from qa where flashID="+id+"")
 	tempArray = []
@@ -45,6 +44,13 @@ def flashlist(id=None):
 	for i in range(0, len(DBarray)):
 		tempArray.append({"questionID":i+1,"question":DBarray[i][1],"answer":DBarray[i][2]})
 	return json.dumps(tempArray)
+
+
+@app.route('/checkDoot', methods = ['GET'])
+def checkDoot(userVoter:str):
+	res = cur.execute("SELECT voted FROM checkVote WHERE name = '"+ userVoter +"'")
+	arrayOfVotes = res.fetchall()
+	return json.dumps(arrayOfVotes)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -65,7 +71,7 @@ def login():
 			return redirect('/')
 	return render_template('login.html', error=err)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
 	err = None
 	res = cur.execute("select * from user")
@@ -86,8 +92,7 @@ def register():
 		return resp
 	return render_template('login.html', error=err)
 
-
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/logOut', methods=['GET', 'POST'])
 def logOut():
 	err = None
 	res = cur.execute("select * from user")
@@ -96,11 +101,16 @@ def logOut():
 		resp.set_cookie('UserID', '', max_age = 0)
 		return resp
 
-	
+@app.route('/classes', methods = ['GET'])
+def classDisp():
+	res = cur.execute("SELECT name FROM class")
+	return render_template('classes.html', class_list = res.fetchall() )
+
 @app.route('/flashpost', methods=['POST'])
 def flashpost():
     print(request.get_data())
     return 'cool'
+
 @app.route('/doot', methods=['POST'])
 def doot():
 	print(request.get_data())

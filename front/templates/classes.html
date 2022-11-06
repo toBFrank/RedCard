@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<body>
+	<h1>Classes</h1>
+    {% for i in class_list %}
+    <button type = "button">  </button>
+    <br>
+    {% endfor %}
+    {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+    {% endif %}
+</body>
+</html>
