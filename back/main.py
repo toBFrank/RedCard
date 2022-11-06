@@ -1,6 +1,6 @@
 import json
 import sqlite3
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 import datetime
 import os
 
@@ -38,6 +38,18 @@ def flashlist(id=None):
 	for i in range(0, len(k)):
 		tempArray.append({"questionID":i+1,"question":DBarray[i][1],"answer":DBarray[i][2]})
 	return json.dumps(tempArray)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+	err= None
+	if request.method == 'POST':
+		if request.form['username'] != 'josh' or request.form['password'] != 'pass':
+			err = "Invalid"
+		else:
+			return redirect('/')
+	return render_template('login.html', error=err)
+	
+
 
 app.run(host='0.0.0.0', port=8000)
 
