@@ -111,6 +111,21 @@ def flashpost():
     print(request.get_data())
     return 'cool'
 
+@app.route('/flashes/<id>')
+def flashes(id=None):
+	res = cur.execute("select user from flash where class='"+id+"'")
+	a=[]
+	b=res.fetchall()
+	for i in range(0, len(b)):
+		a[i]=cur.execute("select name from user where rowid='"+b[i]+"'")
+	return render_template('flashlist.html', flash_list=a)
+		
+
+@app.route('/classes')
+def classes():
+	return render_template('classes.html', class_list=cur.execute("select name from class").fetchall())
+
+
 @app.route('/doot', methods=['POST'])
 def doot():
 	print(request.get_data())
@@ -129,6 +144,8 @@ def isUser(passGiven:str, userGiven:str) -> bool:
 	if passHashed == str(hashedCheck)[2:len(hashedCheck)+2] :
 		return True
 	return False
+
+
 
 app.run(host='0.0.0.0', port=8000)
 

@@ -1,9 +1,9 @@
 <!doctype html>
 <html>
 <body>
-	<h1>Classes</h1>
-    {% for i in class_list %}
-    <button type = "button">  </button>
+	<h1>Flashcards</h1>
+    {% for i in range(0, flash_list|length) -%}
+    <a href="http://localhost:3000/mine/{{ i }}">{{ flash_list[i] }} </a>
     <br>
     {% endfor %}
     {% if error %}
