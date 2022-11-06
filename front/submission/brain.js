@@ -2,13 +2,29 @@
 const my_cards = {}
 var card_counter = 0
 
-// - store q
-// - store a
-// - save card
+// // - store q
+// // - store a
+// // - save card
 var my_card = []
-function get_q() {
+// function get_q() {
+//     var q_card = document.getElementById('Qin')
+//     console.log("Unchecked input: " + q_card.value)  // for me
+//     if (q_card.value.length != 0) {
+//         var inputQ = q_card.value
+//         console.log("Checked input: " + inputQ)  // for me
+//         my_card.push(inputQ)
+//     // check if input is still empty
+//     } else {
+//         alert('You forgot to put the question? In the question box?')
+//     }
+// }
+
+
+function get_qa() {
     var q_card = document.getElementById('Qin')
+    var a_card = document.getElementById('Ain')
     console.log("Unchecked input: " + q_card.value)  // for me
+    console.log("Unchecked input: " + a_card.value)  // for me
     if (q_card.value.length != 0) {
         var inputQ = q_card.value
         console.log("Checked input: " + inputQ)  // for me
@@ -17,10 +33,6 @@ function get_q() {
     } else {
         alert('You forgot to put the question? In the question box?')
     }
-}
-function get_a() {
-    var a_card = document.getElementById('Ain')
-    console.log("Unchecked input: " + a_card.value)  // for me
     if (a_card.value.length != 0) {
         var inputA = a_card.value
         console.log("Checked input: " + inputA)  // for me
@@ -78,9 +90,8 @@ function del_a_card() {
 
 // send all cards
 function send_cards(my_cards) {
-    fetch("http://localhost:", {
-        method: "POST",
-        // headers: {'Content-Type': 'application/json'}, 
+    fetch("http://localhost: ", {
+        method: "POST", 
         body: JSON.stringify(my_cards)
       })
       .then(res => {
