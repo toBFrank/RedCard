@@ -1,6 +1,8 @@
 <!doctype html>
 <html>
 <body>
+	<a href="/register">Register</a>
+	<a href="/login">Login</a>
 	<h1>Classes</h1>
     {% for i in range(0, class_list|length) -%}
     <a href="/flashes/{{ i+1 }}">{{ class_list[i][0] }} </a>

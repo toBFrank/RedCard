@@ -2,6 +2,7 @@
 <html>
 <body>
 	<h1>Flashcards</h1>
+	<h2><a href="http://localhost:8001/skeleton.html">Create Flashcards</a></h2>
     {% for i in range(0, flash_list|length) -%}
     <a href="http://localhost:3000/mine/{{ i }}">{{ flash_list[i] }} </a>
     <br>

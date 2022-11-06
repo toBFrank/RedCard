@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <h1>RedCard</h1>
+	<h2>Register</h2>
+	     <form action="" method="post">
+        <input class="inputField" type="text" placeholder="Username" name="username" value="{{request.form.username }}">
+          <br>
+         <input class="inputField" type="password" placeholder="Password" name="password" value="{{request.form.password }}">
+          <br>
+        <input id="loginBut" class="btn btn-default" type="submit" value="Login">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+</body>
+</html>
