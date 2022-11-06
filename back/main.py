@@ -65,6 +65,37 @@ def login():
 			return redirect('/')
 	return render_template('login.html', error=err)
 
+@app.route('/login', methods=['GET', 'POST'])
+def register():
+	err = None
+	res = cur.execute("select * from user")
+	if request.method == 'POST':
+		userNameGivenBy = request.form['username']
+		passGivenBy = request.form['password']
+
+		salted = bcrypt.gensalt() 
+		res = cur.execute("INSERT INTO user (name) VALUES ('" + userNameGivenBy + "')")
+		res = cur.execute("UPDATE user SET salt ='" + str(salted)[2:len(salted)+2] + "' where name= '" + userNameGivenBy + "'") 
+		HashedPassword = bcrypt.hashpw(passGivenBy.encode('utf-8'),salted) 
+		res = cur.execute("UPDATE user SET passHash ='" + str(HashedPassword)[2:len(HashedPassword)+2] + "' where name = '" + userNameGivenBy + "'") 
+
+		resp = make_response(render_template('index.html'))
+		cookieID = uuid.uuid4()
+		resp.set_cookie('UserID', str(cookieID).encode('utf-8'))
+		cur.execute("UPDATE user SET cookie = '" + str(cookieID) + "' WHERE name ='" + userNameGivenBy + "'")
+		return resp
+	return render_template('login.html', error=err)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def logOut():
+	err = None
+	res = cur.execute("select * from user")
+	if request.method == 'POST':
+		resp = make_response("Cookie Removed")
+		resp.set_cookie('UserID', '', max_age = 0)
+		return resp
+
 	
 @app.route('/flashpost', methods=['POST'])
 def flashpost():
