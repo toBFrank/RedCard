@@ -1,5 +1,5 @@
 // store all cards
-const my_cards = {}
+let my_cards = {}
 var card_counter = 0
 
 // // - store q
@@ -89,12 +89,42 @@ function del_a_card() {
 }
 
 // send all cards
-function send_cards(my_cards) {
-    fetch("http://localhost: ", {
+function send_cards() {
+
+/*    fetch("http://localhost:8000/flashpost", {
         method: "POST", 
-        body: JSON.stringify(my_cards)
+        body: JSON.stringify(my_cards),
+  headers: {
+'Accept': 'application/json',
+    'Content-Type': 'application/json'  
+}
       })
       .then(res => {
         console.log("Request complete! response:", res);
       });
+*/
+let dataReceived = ""; 
+fetch("http://localhost:8000/flashpost", {
+    method: "post",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(my_cards)
+})
+    .then(resp => {
+        if (resp.status === 200) {
+            return resp.json()
+        } else {
+            console.log("Status: " + resp.status)
+            return Promise.reject("server")
+        }
+    })
+    .then(dataJson => {
+        dataReceived = JSON.parse(dataJson)
+    })
+    .catch(err => {
+        if (err === "server") return
+        console.log(err)
+    })
+
+console.log(`Received: ${dataReceived}`) 
+
 }

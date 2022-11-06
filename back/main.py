@@ -3,6 +3,7 @@ import sqlite3
 from flask import Flask, render_template, request, redirect, url_for
 import datetime
 import os
+from flask_cors import CORS
 
 con = sqlite3.connect("main.db", check_same_thread=False)
 
@@ -12,6 +13,7 @@ cur = con.cursor()
 #con.close()
 template_dir = os.path.abspath('../front/templates')
 app = Flask(__name__, template_folder=template_dir)
+CORS(app)
 
 @app.route('/')
 def main():
@@ -49,7 +51,10 @@ def login():
 			return redirect('/')
 	return render_template('login.html', error=err)
 	
-
+@app.route('/flashpost', methods=['POST'])
+def flashpost():
+    print(request.get_data())
+    return 'cool'
 
 app.run(host='0.0.0.0', port=8000)
 
