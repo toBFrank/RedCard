@@ -12,8 +12,8 @@ function QaSwitcher(props) {
 		return (
 	<Show
 		when={clicked()}
-		fallback={<li onClick={toggle}>Q: {props.in["q"]}</li>}>
-		<li onClick={toggle}>A: {props.in["a"]}</li>
+		fallback={<li onClick={toggle}>Q: {props.in["question"]}</li>}>
+		<li onClick={toggle}>A: {props.in["answer"]}</li>
 </Show>
 )
   ;
