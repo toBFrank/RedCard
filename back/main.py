@@ -44,6 +44,8 @@ def flashlist(id=None):
 	for i in range(0, len(DBarray)):
 		tempArray.append({"questionID":i+1,"question":DBarray[i][1],"answer":DBarray[i][2]})
 	return json.dumps(tempArray)
+
+
 @app.route('/checkDoot', methods = ['GET'])
 def checkDoot(userVoter:str):
 	res = cur.execute("SELECT voted FROM checkVote WHERE name = '"+ userVoter +"'")
@@ -90,7 +92,7 @@ def register():
 		return resp
 	return render_template('login.html', error=err)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/logOut', methods=['GET', 'POST'])
 def logOut():
 	err = None
 	res = cur.execute("select * from user")
@@ -108,8 +110,7 @@ def classDisp():
 def flashpost():
     print(request.get_data())
     return 'cool'
-<<<<<<< HEAD
-=======
+
 @app.route('/doot', methods=['POST'])
 def doot():
 	print(request.get_data())
@@ -117,7 +118,6 @@ def doot():
 	uID = y['UserID']
 	qID = y['qID']
 	return 'success'
->>>>>>> cfded08bbd51abb28fd703ac4c920f7bb3937d56
 
 def isUser(passGiven:str, userGiven:str) -> bool:
 	cur.execute("SELECT passHash, salt FROM user WHERE name = '" + userGiven + "'")
