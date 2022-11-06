@@ -1,0 +1,132 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #ffffff;
+    height: 90vh;
+    width: 90vw;
+    margin: 10% auto;
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 1px;
+    font-size: 3rem;
+    color: #d35b5b;
+    user-select: none;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 9rem;
+    margin-bottom: 0.1rem;
+    letter-spacing: 3px;
+    /* color: black; */
+    /* text-transform: lowercase; */
+    text-align: center;
+}
+
+.qatitle {
+    margin-left: 6rem;
+}
+
+h2 {
+    margin-left: 6rem;
+}
+
+.inputField {
+    border: 1px solid #e9b2a8;
+    background-color: #e9b2a8;
+    height: max-content;
+    width: 20%;
+    padding: 12px;
+    font-size: 2rem;  
+    overflow-x: auto;  
+    font-family: 'Josefin Sans', sans-serif;
+    transition: width 0.7s;
+    margin-bottom: 1rem;
+    color: black;
+    margin-left: 6rem;
+}
+
+.inputField::placeholder {
+    color: #a25a4e;
+    font-family: 'Josefin Sans', sans-serif;
+    opacity: 0.50;
+}
+
+.inputField:hover {
+    background: linear-gradient(to right, #ac3636, #e9b2a8);
+    border: none;
+    color: #ffffff; 
+}
+
+.inputField:hover::placeholder {
+    color: #a25a4e;
+}
+
+.inputField:focus {
+    background: linear-gradient(to right, #ac3636, #e9b2a8);
+    border: none;
+    width: 40%;
+    color: #ffffff; 
+    outline: 0px;
+}
+.inputField::-webkit-search-cancel-button {
+    appearance: none;
+}
+
+.inputField:focus::placeholder {
+    color: #e6afa5; 
+}
+
+.DelCard {
+    margin-left: 6rem;
+    margin-bottom: 8rem;
+    margin-top: 4rem;
+}
+
+button {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #e6afa5;
+    border: 1px solid #d35b5b;
+    background-color: #d35b5b;
+    font-size: 2rem;
+    padding: 6px;
+    margin-left: 6rem;
+    margin-bottom: 2rem;
+}
+
+button:hover {
+    color: #d35b5b;
+    border: 1px solid #e6afa5;
+    background-color: #e6afa5;
+}
+
+.cardQ {
+    color: #d35b5b;
+    border: 1px solid #e6afa5;
+    background-color: #e6afa5;
+    font-size: 2rem;
+    height: max-content;
+    width: 50%;
+    padding: 12px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-left: 6rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.cardA {
+    color: #e6afa5;
+    border: 1px solid #d35b5b;
+    background-color: #d35b5b;
+    font-size: 2rem;
+    height: max-content;
+    width: 50%;
+    padding: 12px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-left: 6rem;
+    margin-bottom: 6rem;
+    text-align: center;
+}
