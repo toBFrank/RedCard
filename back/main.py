@@ -111,6 +111,11 @@ def flashpost():
     print(request.get_data())
     return 'cool'
 
+
+@app.route('/quizMake', methods=['POST'])
+def quizMake(whichClass:str):
+	return 'success'
+
 @app.route('/flashes/<id>')
 def flashes(id=None):
 	res = cur.execute("select user from flash where class='"+id+"'")
@@ -126,12 +131,21 @@ def classes():
 	return render_template('classes.html', class_list=cur.execute("select name from class").fetchall())
 
 
+
 @app.route('/doot', methods=['POST'])
 def doot():
 	print(request.get_data())
 	y = json.loads(request.get_data())
 	uID = y['UserID']
 	qID = y['qID']
+	allVotes = cur.execute("SELECT votes from checkvote where user = '"+ uID +"'").fetchall()
+	if qID in allVotes:
+		return 'already'
+	allVotes.append(qID)
+	currentKarma = cur.execute("SELECT doots from qa where ID = '" + qID + "'").fetchone()
+	currentKarma = currentKarma + 1
+	cur.execute("UPDATE qa set doots = '" + currentKarma + "' where ID = '" + qID + "'")
+	cur.execute("UPDATE checkvote set votes = '" + allVotes + "' where user = '" + uID + "'")
 	return 'success'
 
 def isUser(passGiven:str, userGiven:str) -> bool:
